@@ -1,0 +1,534 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phần 1 - Lý thuyết Lập trình Web</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f5f9;
+            color: #1e293b;
+            line-height: 1.8;
+        }
+
+        header {
+            background: #1d4ed8;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 30px;
+        }
+
+        header p {
+            margin: 5px 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 25px auto;
+            padding: 0 20px;
+        }
+
+        .toc, .question {
+            background: white;
+            padding: 25px;
+            margin-bottom: 22px;
+            border-radius: 12px;
+            box-shadow: 0 3px 12px #0000000a;
+        }
+
+        .toc h2, .question h2 {
+            color: #1d4ed8;
+            margin-top: 0;
+        }
+
+        .toc a {
+            display: block;
+            padding: 7px 0;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+
+        h3 {
+            color: #334155;
+            margin-top: 22px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        th, td {
+            border: 1px solid #cbd5e1;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background: #dbeafe;
+        }
+
+        pre {
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 18px;
+            border-radius: 8px;
+            overflow-x: auto;
+            line-height: 1.6;
+        }
+
+        code {
+            font-family: Consolas, monospace;
+        }
+
+        p code, li code, td code {
+            background: #e2e8f0;
+            color: #1d4ed8;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+
+        .conclusion {
+            background: #eff6ff;
+            border-left: 4px solid #2563eb;
+            padding: 12px 16px;
+            margin-top: 20px;
+        }
+
+        .back {
+            display: inline-block;
+            margin-top: 15px;
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 23px;
+            }
+
+            .container {
+                padding: 0 12px;
+            }
+
+            .toc, .question {
+                padding: 17px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th, td {
+                padding: 7px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+            }
+
+            header {
+                background: white;
+                color: black;
+                border-bottom: 2px solid #333;
+            }
+
+            .toc, .question {
+                box-shadow: none;
+                border: 1px solid #ddd;
+                break-inside: avoid;
+            }
+
+            .back {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>PHẦN 1: LÝ THUYẾT</h1>
+    <p>Môn học: Lập trình Web</p>
+    <p>Tổng điểm: 40 điểm | Gồm 4 câu hỏi</p>
+</header>
+
+<main class="container">
+
+    <nav class="toc">
+        <h2>Mục lục</h2>
+        <a href="#cau1">Câu 1: Position trong CSS</a>
+        <a href="#cau2">Câu 2: Domain, Hosting và DNS</a>
+        <a href="#cau3">Câu 3: So sánh var, let và const</a>
+        <a href="#cau4">Câu 4: Event Delegation</a>
+    </nav>
+
+    <!-- CÂU 1 -->
+    <section class="question" id="cau1">
+        <h2>Câu 1 (10 điểm): Phân biệt position: relative và absolute</h2>
+
+        <h3>1. Khái niệm</h3>
+        <p>
+            <strong>position: relative</strong> dùng để định vị phần tử
+            tương đối so với vị trí ban đầu của chính nó. Phần tử vẫn giữ
+            chỗ trong bố cục trang web.
+        </p>
+
+        <p>
+            <strong>position: absolute</strong> định vị phần tử dựa trên
+            phần tử tổ tiên gần nhất có thuộc tính position khác static.
+            Nếu không có phần tử phù hợp, phần tử sẽ được định vị theo
+            khung chứa ban đầu của trang. Phần tử không còn chiếm chỗ
+            trong bố cục thông thường.
+        </p>
+
+        <h3>2. Bảng so sánh</h3>
+        <table>
+            <tr>
+                <th>Tiêu chí</th>
+                <th>Relative</th>
+                <th>Absolute</th>
+            </tr>
+            <tr>
+                <td>Vị trí tham chiếu</td>
+                <td>Vị trí ban đầu của chính nó</td>
+                <td>Phần tử tổ tiên có định vị phù hợp</td>
+            </tr>
+            <tr>
+                <td>Không gian bố cục</td>
+                <td>Vẫn được giữ lại</td>
+                <td>Không được giữ lại</td>
+            </tr>
+            <tr>
+                <td>Ứng dụng</td>
+                <td>Dịch chuyển phần tử, tạo khung tham chiếu</td>
+                <td>Đặt nhãn, biểu tượng chồng lên nội dung</td>
+            </tr>
+        </table>
+
+        <h3>3. Ví dụ minh họa</h3>
+        <pre><code>&lt;style&gt;
+.container {
+    position: relative;
+    width: 300px;
+    height: 150px;
+    background: lightblue;
+}
+
+.relative-box {
+    position: relative;
+    top: 10px;
+    left: 20px;
+    background: lightgreen;
+}
+
+.absolute-box {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    background: orange;
+}
+&lt;/style&gt;
+
+&lt;div class="container"&gt;
+    &lt;div class="relative-box"&gt;Relative&lt;/div&gt;
+    &lt;div class="absolute-box"&gt;Absolute&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+        <h3>4. Responsive và triển khai website</h3>
+        <p>
+            Trong thiết kế responsive, relative thường được dùng để tạo
+            khung tham chiếu cho phần tử con. Absolute phù hợp với các
+            thành phần cần đặt chồng lên hình ảnh hoặc nội dung.
+        </p>
+        <p>
+            Khi deploy lên hosting, CSS vẫn hoạt động bình thường. Tuy nhiên,
+            việc dùng tọa độ cố định có thể làm giao diện lệch trên điện thoại.
+            Nên kết hợp Flexbox, Grid, đơn vị linh hoạt và media queries để
+            website hiển thị tốt trên nhiều thiết bị.
+        </p>
+
+        <div class="conclusion">
+            <strong>Kết luận:</strong> Relative giữ chỗ trong bố cục và dịch
+            chuyển từ vị trí ban đầu; absolute tách khỏi bố cục thông thường
+            và định vị theo khung chứa phù hợp.
+        </div>
+
+        <a class="back" href="#">↑ Về đầu trang</a>
+    </section>
+
+    <!-- CÂU 2 -->
+    <section class="question" id="cau2">
+        <h2>Câu 2 (10 điểm): Quy trình đăng ký Domain và cấu hình Hosting</h2>
+
+        <h3>1. Khái niệm</h3>
+        <ul>
+            <li><strong>Domain:</strong> Tên miền, là địa chỉ của website,
+                ví dụ example.com.</li>
+            <li><strong>Hosting:</strong> Dịch vụ lưu trữ các tệp và dữ liệu
+                để website có thể hoạt động trên Internet.</li>
+            <li><strong>DNS:</strong> Hệ thống phân giải tên miền, giúp trình
+                duyệt tìm đến địa chỉ IP hoặc dịch vụ tương ứng với tên miền.</li>
+        </ul>
+
+        <h3>2. Quy trình triển khai website</h3>
+        <ol>
+            <li>Tạo website bằng HTML, CSS và JavaScript.</li>
+            <li>Kiểm tra website trên trình duyệt.</li>
+            <li>Đăng ký tên miền thông qua nhà đăng ký tên miền.</li>
+            <li>Chọn hosting phù hợp với website.</li>
+            <li>Đưa mã nguồn lên hosting hoặc kết nối với GitHub.</li>
+            <li>Cấu hình DNS theo hướng dẫn của nhà cung cấp.</li>
+            <li>Kiểm tra website và bật HTTPS.</li>
+        </ol>
+
+        <h3>3. Công cụ hỗ trợ triển khai</h3>
+        <p>
+            <strong>GitHub Pages:</strong> Cho phép xuất bản website tĩnh
+            trực tiếp từ kho GitHub, phù hợp với dự án HTML, CSS và JavaScript.
+        </p>
+        <p>
+            <strong>Netlify:</strong> Hỗ trợ deploy website từ kho mã nguồn,
+            tự động cập nhật khi có thay đổi và hỗ trợ cấu hình tên miền,
+            HTTPS tùy dịch vụ.
+        </p>
+
+        <h3>4. Vai trò của DNS và rủi ro bảo mật</h3>
+        <p>
+            Khi người dùng nhập tên miền, DNS giúp xác định dịch vụ hoặc máy
+            chủ tương ứng để trình duyệt truy cập website.
+        </p>
+        <p>Các rủi ro khi cấu hình không đúng gồm:</p>
+        <ul>
+            <li>Tên miền không truy cập được do bản ghi DNS sai.</li>
+            <li>Tài khoản quản lý tên miền bị chiếm quyền.</li>
+            <li>Thông tin nhạy cảm bị lộ khi đưa vào mã JavaScript công khai.</li>
+            <li>Kết nối không được bảo vệ nếu thiếu HTTPS.</li>
+        </ul>
+        <p>
+            Để hạn chế rủi ro, cần dùng mật khẩu mạnh, bật xác thực đa yếu tố,
+            kiểm tra bản ghi DNS, bật HTTPS và không lưu khóa bí mật trong
+            mã nguồn phía trình duyệt.
+        </p>
+
+        <div class="conclusion">
+            <strong>Kết luận:</strong> Domain là địa chỉ, hosting là nơi cung
+            cấp dịch vụ lưu trữ và DNS giúp kết nối tên miền với website.
+            GitHub Pages và Netlify là các lựa chọn thuận tiện để triển khai
+            website tĩnh mà không cần tự quản lý máy chủ riêng.
+        </div>
+
+        <a class="back" href="#">↑ Về đầu trang</a>
+    </section>
+
+    <!-- CÂU 3 -->
+    <section class="question" id="cau3">
+        <h2>Câu 3 (10 điểm): So sánh var, let và const trong JavaScript</h2>
+
+        <h3>1. Khái niệm</h3>
+        <p>
+            var, let và const là các từ khóa dùng để khai báo biến trong
+            JavaScript. Chúng khác nhau về phạm vi, khả năng gán lại và
+            cách hoạt động khi hoisting.
+        </p>
+
+        <h3>2. Bảng so sánh</h3>
+        <table>
+            <tr>
+                <th>Tiêu chí</th>
+                <th>var</th>
+                <th>let</th>
+                <th>const</th>
+            </tr>
+            <tr>
+                <td>Phạm vi</td>
+                <td>Hàm hoặc toàn cục</td>
+                <td>Khối lệnh</td>
+                <td>Khối lệnh</td>
+            </tr>
+            <tr>
+                <td>Khai báo lại</td>
+                <td>Có thể</td>
+                <td>Không thể trong cùng phạm vi</td>
+                <td>Không thể trong cùng phạm vi</td>
+            </tr>
+            <tr>
+                <td>Gán lại giá trị</td>
+                <td>Có thể</td>
+                <td>Có thể</td>
+                <td>Không thể</td>
+            </tr>
+            <tr>
+                <td>Hoisting</td>
+                <td>Khởi tạo bằng undefined</td>
+                <td>Không thể truy cập trước khai báo</td>
+                <td>Không thể truy cập trước khai báo</td>
+            </tr>
+        </table>
+
+        <h3>3. Ví dụ lỗi thường gặp</h3>
+        <pre><code>console.log(age);
+
+let age = 20;</code></pre>
+
+        <p>
+            Đoạn code trên gây lỗi ReferenceError vì biến age được truy cập
+            trước khi dòng khai báo let được thực thi. Khoảng thời gian này
+            được gọi là Temporal Dead Zone.
+        </p>
+
+        <p>Ví dụ về sự khác biệt phạm vi:</p>
+        <pre><code>if (true) {
+    var name = "Hieu";
+}
+console.log(name); // Hieu
+
+if (true) {
+    let score = 8;
+}
+console.log(score); // ReferenceError</code></pre>
+
+        <h3>4. Debug bằng Chrome DevTools</h3>
+        <ol>
+            <li>Mở website bằng Chrome.</li>
+            <li>Nhấn F12 để mở DevTools.</li>
+            <li>Chọn Console để xem thông báo lỗi.</li>
+            <li>Chọn Sources để mở tệp JavaScript và đặt breakpoint.</li>
+            <li>Tải lại trang, kiểm tra giá trị biến trong Scope.</li>
+            <li>Sửa code và chạy lại để xác nhận lỗi đã được khắc phục.</li>
+        </ol>
+
+        <div class="conclusion">
+            <strong>Kết luận:</strong> Nên ưu tiên const khi không cần gán lại
+            biến và dùng let khi giá trị cần thay đổi. Hạn chế var để giảm
+            các lỗi liên quan đến phạm vi biến.
+        </div>
+
+        <a class="back" href="#">↑ Về đầu trang</a>
+    </section>
+
+    <!-- CÂU 4 -->
+    <section class="question" id="cau4">
+        <h2>Câu 4 (10 điểm): Event Delegation trong JavaScript</h2>
+
+        <h3>1. Khái niệm</h3>
+        <p>
+            Event Delegation (ủy quyền sự kiện) là kỹ thuật gắn một trình
+            xử lý sự kiện vào phần tử cha để xử lý sự kiện phát sinh từ
+            các phần tử con. Kỹ thuật này dựa trên cơ chế event bubbling,
+            tức sự kiện có thể lan truyền từ phần tử con lên phần tử cha.
+        </p>
+
+        <h3>2. Ví dụ danh sách động</h3>
+        <pre><code>&lt;ul id="taskList"&gt;
+    &lt;li&gt;Học HTML&lt;/li&gt;
+    &lt;li&gt;Học CSS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;script&gt;
+const taskList = document.getElementById("taskList");
+
+taskList.addEventListener("click", function(event) {
+    const item = event.target.closest("li");
+
+    if (!item || !taskList.contains(item)) {
+        return;
+    }
+
+    alert("Bạn đã chọn: " + item.textContent);
+});
+
+// Thêm một mục mới
+const newItem = document.createElement("li");
+newItem.textContent = "Học JavaScript";
+taskList.appendChild(newItem);
+&lt;/script&gt;</code></pre>
+
+        <h3>3. Giải thích hoạt động</h3>
+        <ul>
+            <li>
+                <code>addEventListener()</code> gắn sự kiện click vào phần tử cha.
+            </li>
+            <li>
+                <code>event.target</code> xác định phần tử được nhấp.
+            </li>
+            <li>
+                <code>closest("li")</code> tìm mục li gần nhất.
+            </li>
+            <li>
+                <code>contains()</code> kiểm tra mục có thuộc danh sách hay không.
+            </li>
+        </ul>
+
+        <h3>4. Lợi ích khi kết hợp HTML và CSS</h3>
+        <p>
+            HTML tạo cấu trúc danh sách, CSS định dạng giao diện và JavaScript
+            xử lý tương tác. Event Delegation giúp giảm việc gắn nhiều trình
+            xử lý sự kiện, hỗ trợ các phần tử được thêm động và làm code dễ
+            quản lý, bảo trì hơn.
+        </p>
+        <p>
+            Tuy nhiên, kỹ thuật này không phải lúc nào cũng nhanh hơn trong
+            mọi tình huống. Cần kiểm tra đúng phần tử đích và lưu ý rằng
+            không phải tất cả sự kiện đều nổi bọt theo cách thông thường.
+        </p>
+
+        <div class="conclusion">
+            <strong>Kết luận:</strong> Event Delegation là kỹ thuật hữu ích
+            để xử lý sự kiện cho danh sách động, giảm mã lặp và hỗ trợ mở rộng
+            website hiệu quả.
+        </div>
+
+        <a class="back" href="#">↑ Về đầu trang</a>
+    </section>
+
+    <section class="question">
+        <h2>Tổng kết Phần 1</h2>
+        <p>
+            Bốn nội dung lý thuyết giúp người học hiểu cách định vị phần tử
+            bằng CSS, triển khai website lên Internet, quản lý biến trong
+            JavaScript và xử lý sự kiện trên các phần tử HTML động.
+        </p>
+        <p>
+            Việc kết hợp HTML, CSS, JavaScript cùng các công cụ hỗ trợ phù hợp
+            giúp xây dựng website có giao diện responsive, dễ bảo trì và
+            an toàn hơn khi triển khai thực tế.
+        </p>
+    </section>
+
+</main>
+
+<footer>
+    Phần 1 - Lý thuyết Lập trình Web | Tổng điểm 40
+</footer>
+
+</body>
+</html>
